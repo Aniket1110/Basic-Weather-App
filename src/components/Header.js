@@ -1,5 +1,6 @@
 import React from 'react'
 import { Icon } from '@iconify/react'
+import WeatherInfo from './WeatherInfo'
 
 const Header = () => {
     return (
@@ -19,7 +20,7 @@ const Header = () => {
                 <div className="col-2">
                     <i className="fas fa-cloud-sun text-secondary " style={{ fontSize: "150px" }}></i>
                 </div>
-                
+                <WeatherInfo/>
             </div>
         </div>
     )
