@@ -1,19 +1,13 @@
 import Header from "./components/Header";
-import Mysvg from './wave.svg'
-
-const backgroundStyle = {
-  backgroundImage: `url(${Mysvg})`,
-  backgroundPosition: 'center',
-  backgroundSize: 'cover',
-  backgroundRepeat: 'no-repeat',
-  width: '100vw',
-  height: '100vh'
-};
+import WeatherInfo from "./components/WeatherInfo";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="App bg-dark" style={backgroundStyle}>
+    <div className="App bg-dark">
       <Header />
+      <WeatherInfo />
+      <Footer/>
     </div>
   );
 }

@@ -1,20 +1,17 @@
 import React from 'react'
-import SemiCircleProgressBar from "react-progressbar-semicircle";
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 const WeatherInfo = () => {
+    const percentage = 66;
     return (
         <div>
             <div className=" d-flex row justify-content-around">
-                <div className="col-3 bg-info p-4"></div>
-                <div className="col-3  p-4 text-center mt-n5 ">
-                    <SemiCircleProgressBar
-                        stroke = "#57799a"
-                        strokeWidth = "15"
-                        percentage={33}
-                        diameter = "320"
-                    />;
+                <div className="col-3 bg-info"></div>
+                <div className="col-3 text-center ">
+                <CircularProgressbar value={percentage} text={<>27&deg;</>} />;
                 </div>
-                <div className="col-3 bg-info p-4"></div>
+                <div className="col-3 bg-info"></div>
             </div>
         </div>
     )
