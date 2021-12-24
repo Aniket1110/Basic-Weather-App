@@ -5,7 +5,7 @@ const Divider = ({children}) => {
     return (
         <div className="container">
             <div className="border" />
-            <span className="content text-light p-2">
+            <span className="content p-2">
                 {children}
             </span>
             <div className="border" />

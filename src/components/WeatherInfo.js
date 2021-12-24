@@ -5,16 +5,16 @@ import { Icon } from '@iconify/react';
 
 
 const format = (str) => {
-    
-    let hr = parseInt(str.substring( 0, 2))
 
-    if(hr < 12) return str + " AM";
-    else if(hr > 12) {
+    let hr = parseInt(str.substring(0, 2))
+
+    if (hr < 12) return str + " AM";
+    else if (hr > 12) {
         hr -= 12;
 
-        let s = hr + ":" + str.substring(3,5) + " PM";
+        let s = hr + ":" + str.substring(3, 5) + " PM";
 
-        if(hr < 10) return "0"+s;
+        if (hr < 10) return "0" + s;
         else return s;
     }
     else {
@@ -23,13 +23,13 @@ const format = (str) => {
 }
 
 const WeatherInfo = ({ weatherinfo }) => {
-    const { temp,temp_min,temp_max, pressure, humidity, sunrise, sunset, country, speed, weathertype, description, icon, city, clouds, date_time, timezone , dt } = weatherinfo;
-    
-    let rise_time = new Date(sunrise * 1000).toString().substring(16 , 21);
-    let set_time  = new Date(sunset * 1000).toString().substring(16 , 21);
+    const { temp, temp_min, temp_max, pressure, humidity, sunrise, sunset, country, speed, weathertype, description, icon, city, clouds, date_time, timezone, dt } = weatherinfo;
 
-     rise_time = format(rise_time)
-     set_time = format(set_time)
+    let rise_time = new Date(sunrise * 1000).toString().substring(16, 21);
+    let set_time = new Date(sunset * 1000).toString().substring(16, 21);
+
+    rise_time = format(rise_time)
+    set_time = format(set_time)
 
     return (
         <div>
@@ -63,8 +63,14 @@ const WeatherInfo = ({ weatherinfo }) => {
                         {temp}&#8451;
                     </div>
                     <div className="fs-5 d-flex  justify-content-around p-3">
-                        <div>{temp_min}&#8451;</div>
-                        <div>{temp_max}&#8451;</div>
+                        <div className='d-flex'>
+                            <Icon icon="akar-icons:arrow-down" className='m-1'/>
+                            <div>{temp_min}&#8451;</div>
+                        </div>
+                        <div className='d-flex'>
+                            <Icon icon="akar-icons:arrow-up" className='m-1'/>
+                            <div>{temp_max}&#8451;</div>
+                        </div>
                     </div>
                 </div>
                 <div className="col-3 my-auto">

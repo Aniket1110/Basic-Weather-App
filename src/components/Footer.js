@@ -6,13 +6,13 @@ const backgroundStyle = {
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-    width: '100vw',
-    height: '100vh'
+    height: '50vh',
+    width: '100vw'
   };
 
 const Footer = () => {
     return (
-        <div className ="bg-dark" style={backgroundStyle}> </div>
+        <div  style={backgroundStyle}> </div>
     )
 }
 
