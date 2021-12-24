@@ -31,9 +31,7 @@ const TenDays = ({ arr }) => {
                         let time = new Date(e.dt * 1000).toString().substring(16, 21);
                         time = format(time);
 
-                        console.log(e)
-
-                        console.log(e.weather.icon)
+                     
                         return (
                             <div key={ind}>
                                 <p>{time}</p>

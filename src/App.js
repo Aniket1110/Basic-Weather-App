@@ -34,8 +34,8 @@ function App() {
 
     try {
 
-      let url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=feed9a4423b4e259b9d583ccf7ea7b71`;
-      let url2 = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&cnt=8&appid=feed9a4423b4e259b9d583ccf7ea7b71`;
+      let url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${process.env.REACT_APP_API_KEY}`;
+      let url2 = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&cnt=8&appid=${process.env.REACT_APP_API_KEY}`;
 
       const get = await fetch(url);
       const data = await get.json();
