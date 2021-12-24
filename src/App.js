@@ -1,6 +1,6 @@
 import WeatherInfo from "./components/WeatherInfo";
 import Footer from "./components/Footer";
-import TenDays from "./components/TenDays";
+import TenDays from "./components/Next_24_Hours";
 import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import Divider from "./components/Divider";
