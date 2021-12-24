@@ -3,29 +3,33 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { Icon } from '@iconify/react';
 
-const WeatherInfo = ({ weatherinfo }) => {
-    const { temp,temp_min,temp_max, pressure, humidity, sunrise, sunset, country, speed, weathertype, description, icon, city, clouds, date_time, timezone } = weatherinfo;
+
+const format = (str) => {
     
-    let time = new Date(sunset * 1000);
-    let hour = time.getHours().toString();
-    let minute = time.getMinutes().toString();
+    let hr = parseInt(str.substring( 0, 2))
 
-    if (time.getHours() < 9) hour = "0" + hour;
-    if (time.getMinutes() < 9) minute = "0" + minute;
+    if(hr < 12) return str + " AM";
+    else if(hr > 12) {
+        hr -= 12;
 
-    let sun_set = hour + ":" + minute + " PM";
+        let s = hr + ":" + str.substring(3,5) + " PM";
 
-    let time2 = new Date(sunrise);
+        if(hr < 10) return "0"+s;
+        else return s;
+    }
+    else {
+        return str + " PM";
+    }
+}
 
-    let hour2 = time2.getHours().toString();
-    let minute2 = time2.getMinutes().toString();
+const WeatherInfo = ({ weatherinfo }) => {
+    const { temp,temp_min,temp_max, pressure, humidity, sunrise, sunset, country, speed, weathertype, description, icon, city, clouds, date_time, timezone , dt } = weatherinfo;
+    
+    let rise_time = new Date(sunrise * 1000).toString().substring(16 , 21);
+    let set_time  = new Date(sunset * 1000).toString().substring(16 , 21);
 
-    if (time2.getHours() < 9) hour2 = "0" + hour2;
-    if (time2.getMinutes() < 9) minute2 = "0" + minute2;
-
-    let sun_rise = hour2 + ":" + minute2 + " AM";
-
-
+     rise_time = format(rise_time)
+     set_time = format(set_time)
 
     return (
         <div>
@@ -66,12 +70,12 @@ const WeatherInfo = ({ weatherinfo }) => {
                 <div className="col-3 my-auto">
                     <div className="d-flex">
                         <Icon icon="wi:sunrise" className="mt-1 mx-1" />
-                        <p style={{ fontSize: "18px" }}>Sunrise - {sun_rise}</p>
+                        <p style={{ fontSize: "18px" }}>Sunrise - {rise_time}</p>
                     </div>
 
                     <div className="d-flex ">
                         <Icon icon="wi:sunset" className="mt-1 mx-1" />
-                        <p style={{ fontSize: "18px" }}>Sunset - {sun_set}</p>
+                        <p style={{ fontSize: "18px" }}>Sunset - {set_time}</p>
                     </div>
                 </div>
             </div>

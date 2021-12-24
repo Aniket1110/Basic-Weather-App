@@ -14,4 +14,20 @@ input[type="search"]::-webkit-search-cancel-button:hover {
 
 .search-button-background {
   background-color: #3e8dc2;
+
+}
+
+
+.container{
+  display: flex;
+  align-items: center;
+}
+
+.border{
+  border-bottom: 1px solid black;
+  width: 100%;
+}
+
+.content {
+  padding: 0 10px 0 10px;
 }

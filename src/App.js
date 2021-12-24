@@ -1,33 +1,64 @@
 import WeatherInfo from "./components/WeatherInfo";
 import Footer from "./components/Footer";
+import TenDays from "./components/TenDays";
 import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
+import Divider from "./components/Divider";
+
+const format = (str) => {
+
+  let hr = parseInt(str.substring(0, 2))
+
+  if (hr < 12) return str + " AM";
+  else if (hr > 12) {
+    hr -= 12;
+
+    let s = hr + ":" + str.substring(3, 5) + " PM";
+
+    if (hr < 10) return "0" + s;
+    else return s;
+  }
+  else {
+    return str + " PM";
+  }
+}
+
 
 function App() {
   const [location, setlocation] = useState("Kolkata");
   const [weatherinfo, setweatherinfo] = useState({});
   const [load, setload] = useState(true);
+  const [weatherHour, setweatherHour] = useState({});
 
   const getApiData = async () => {
 
     try {
 
       let url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=feed9a4423b4e259b9d583ccf7ea7b71`;
+      let url2 = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&cnt=8&appid=feed9a4423b4e259b9d583ccf7ea7b71`;
+
       const get = await fetch(url);
       const data = await get.json();
 
-      const { temp,temp_min,temp_max, pressure, humidity } = data.main;
+      const { temp, temp_min, temp_max, pressure, humidity } = data.main;
       const { sunrise, sunset, country } = data.sys;
       const { speed } = data.wind;
       const { main: weathertype, description, icon } = data.weather[0];
+      const dt = data.dt;
       const city = data.name;
       const { all: clouds } = data.clouds;
       const date_time = data.dt;
       const timezone = data.timezone;
-      const info = { temp, temp_min, temp_max,pressure, humidity, sunrise, sunset, country, speed, weathertype, description, icon, city, clouds, date_time, timezone };
+      const info = { temp, temp_min, temp_max, pressure, humidity, sunrise, sunset, country, speed, weathertype, description, icon, city, clouds, date_time, timezone, dt };
+
+      const get2 = await fetch(url2);
+      const data2 = await get2.json();
+
+      const arr = data2.list;
 
       setload(false);
       setweatherinfo(info);
+      setweatherHour(arr);
     }
     catch (e) {
       console.log(e);
@@ -35,30 +66,11 @@ function App() {
 
   }
 
-  let time = new Date();
-  let hour = time.getHours().toString();
-  let minute = time.getMinutes().toString();
+  let date_time = new Date(weatherinfo.dt * 1000).toString();
+  let date = date_time.substring(0, 16);
+  let time = date_time.substring(16, 21);
 
-  if (time.getHours() < 9) hour = "0" + hour;
-  if (time.getMinutes() < 9) minute = "0" + minute;
-
-  
-  console.log(d);
-
-  let date = time.toString().substring(0,16);
-  let hr = parseInt(time.toString().substring(17,18));
-  console.log(time.toString());
-  console.log(hr);
-
-  var d;
-
-  if(hr < 12) {
-
-    d = hour + ":" + minute + " AM";
-  }
-  else {
-    d = hour + ":" + minute + " PM";
-  }
+  time = format(time)
 
   useEffect(() => {
     getApiData();
@@ -85,14 +97,16 @@ function App() {
           </div>
           <div className="col-3">
             <div className="fs-4 text-light ">
-              
-               <p>{date}</p>
-               <p>{d}</p>
+
+              <p>{date}</p>
+              <p>{time}</p>
             </div>
           </div>
         </div>
       </div>
       <WeatherInfo weatherinfo={weatherinfo} />
+      <Divider>X</Divider>
+      <TenDays arr={weatherHour} />
       <Footer />
     </div>
   );
