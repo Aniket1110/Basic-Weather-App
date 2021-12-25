@@ -12,7 +12,7 @@ const backgroundStyle = {
 
 const Footer = () => {
     return (
-        <div  style={backgroundStyle}> </div>
+        <div style={backgroundStyle}> </div>
     )
 }
 
