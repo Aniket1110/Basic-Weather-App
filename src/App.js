@@ -89,31 +89,27 @@ function App() {
 
   return (
 
-  
     <div className="App bg-dark text-light">
-
       {
-
         loading ? 
           (
-
             <div>
               <div className="text-center p-4 fs-2">
                 Weather Check
               </div>
               <div className="row py-3">
-                <div className="col-3">
+                <div className="col-12 col-md-3  text-center">
                   <div className="fs-3 mx-5">
                     <Icon icon="ci:location" />{weatherinfo.city},{weatherinfo.country}
                   </div>
                 </div>
-                <div className="col-6 text-center">
+                <div className="col-12 col-md-6 text-center p-3">
                   <div>
                     <input type="search" placeholder="Search..." className="py-1 rounded input-field" autoFocus onChange={(e) => setlocation(e.target.value)} />
                     <i className="fas fa-search btn search-button-background py-1 mb-1 px-3" onClick={getApiData}></i>
                   </div>
                 </div>
-                <div className="col-3">
+                <div className="col-12 col-md-3 text-center">
                   <div className="fs-4">
                     <p>{date},{time}</p>
                   </div>
@@ -126,7 +122,6 @@ function App() {
             </div>
           ) : (<div>Loaing...</div>) 
       }
-
     </div>
   );
 }
