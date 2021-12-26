@@ -44,11 +44,11 @@ function App() {
         )
 
       const data2 = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&exclude=hourly,minutely,alerts&units=metric&appid=${api_key}`)
-      .then(
-        res2 => {
-          return res2.data;
-        }
-      )
+        .then(
+          res2 => {
+            return res2.data;
+          }
+        )
 
       const city = data.name;
       const { country } = data.sys;
@@ -57,22 +57,19 @@ function App() {
       const { temp_min, temp_max } = data.main;
       const daily = data2.daily;
 
-      const info = {city, country, dt, sunrise, sunset, temp, pressure, humidity, clouds, wind_speed, weathertype, icon, temp_max, temp_min, daily };
+      const info = { city, country, dt, sunrise, sunset, temp, pressure, humidity, clouds, wind_speed, weathertype, icon, temp_max, temp_min, daily };
 
 
       setweatherinfo(info);
       setloading(true);
-      
+
     }
     catch (e) {
-      // alert('Enter Valid city name')
-      console.log('enter valid city name')
+      alert('Enter Valid city name')
+      // console.log('enter valid city name')
     }
 
   }
-
-  console.log(weatherinfo);
-  // console.log(weatherinfo.daily);
 
   let date_time = new Date(weatherinfo.dt * 1000).toString();
   let date = date_time.substring(0, 16);
@@ -80,18 +77,15 @@ function App() {
 
   time = format(time)
 
-  useEffect( () => {
+  useEffect(() => {
     getApiData();
   }, [])
-
-
-  console.log(loading)
 
   return (
 
     <div className="App bg-dark text-light">
       {
-        loading ? 
+        loading ?
           (
             <div>
               <div className="text-center p-4 fs-2">
@@ -120,7 +114,32 @@ function App() {
               <TenDays weatherinfo={weatherinfo} />
               <Footer />
             </div>
-          ) : (<div>Loaing...</div>) 
+          ) : (<div className="d-flex justify-content-center align-items-center h-100">
+            <div class="spinner-grow text-primary" role="status">
+              <span class="sr-only"></span>
+            </div>
+            <div class="spinner-grow text-secondary" role="status">
+              <span class="sr-only"></span>
+            </div>
+            <div class="spinner-grow text-success" role="status">
+              <span class="sr-only"></span>
+            </div>
+            <div class="spinner-grow text-danger" role="status">
+              <span class="sr-only"></span>
+            </div>
+            <div class="spinner-grow text-warning" role="status">
+              <span class="sr-only"></span>
+            </div>
+            <div class="spinner-grow text-info" role="status">
+              <span class="sr-only"></span>
+            </div>
+            <div class="spinner-grow text-light" role="status">
+              <span class="sr-only"></span>
+            </div>
+            <div class="spinner-grow text-dark" role="status">
+              <span class="sr-only"></span>
+            </div>
+          </div>)
       }
     </div>
   );
