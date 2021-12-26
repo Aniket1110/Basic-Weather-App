@@ -66,7 +66,6 @@ function App() {
     }
     catch (e) {
       alert('Enter Valid city name')
-      // console.log('enter valid city name')
     }
 
   }

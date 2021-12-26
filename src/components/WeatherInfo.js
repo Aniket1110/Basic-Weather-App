@@ -2,16 +2,12 @@ import React from 'react'
 import 'react-circular-progressbar/dist/styles.css';
 import { Icon } from '@iconify/react';
 
-
 const WeatherInfo = ({ weatherinfo }) => {
-    
-    // console.log(weatherinfo)
     const { temp, temp_min, temp_max, pressure, humidity,wind_speed, weathertype, icon, clouds} = weatherinfo;
     
     return (
         <div>
             <div className="d-flex row justify-content-around h5 text-light">
-
                 <div className="col-12 col-md-3 my-auto mx-auto">
                     <div className="fs-1 text-center p-3">
                         {temp}&#8451;

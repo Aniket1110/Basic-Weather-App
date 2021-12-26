@@ -1,6 +1,5 @@
 import React from 'react'
 import { Icon } from '@iconify/react';
-
 import '../index.css';
 
 const format = (str) => {
@@ -30,13 +29,12 @@ const TenDays = ({ weatherinfo }) => {
     return (
 
         <div >
-            {/* <div className='fs-3 text-center p-3'></div> */}
+            <div className='fs-3 text-center p-3'>7 days Forecast</div>
 
             <div className="d-flex scroll mx-5">
                 {
                     daily.map((e, ind) => {
                         let time = new Date(e.dt * 1000).toString().substring(0, 3);
-
                         return (
                             <div key={ind}>
                                 <p className='text-center fs-5'>{time}</p>
