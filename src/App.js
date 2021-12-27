@@ -34,15 +34,13 @@ function App() {
     const api_key = process.env.REACT_APP_API_KEY;
     try {
 
-      let url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${api_key}`;
-
       const data = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${api_key}`)
         .then(
           res => {
             return res.data;
           }
         )
-
+        
       const data2 = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&exclude=hourly,minutely,alerts&units=metric&appid=${api_key}`)
         .then(
           res2 => {
