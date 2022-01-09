@@ -23,9 +23,7 @@ const format = (str) => {
 const TenDays = ({ weatherinfo }) => {
 
     const { daily } = weatherinfo;
-
-    console.log(daily)
-
+    
     return (
 
         <div >
